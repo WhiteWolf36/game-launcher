@@ -5,6 +5,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
 import { GameQuery } from "../App";
+import { useEffect, useState } from "react";
 
 interface Props {
   gameQuery: GameQuery;
@@ -12,6 +13,17 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      // Set the state to show the error message after 2 seconds
+      setShowErrorMessage(true);
+    }, 2000);
+
+    // Clear the timeout to avoid triggering the error message if the component unmounts before 2 seconds
+    return () => clearTimeout(timeoutId);
+  }, []); // Empty dependency array ensures that this effect runs only once after the initial render
 
   const skeletons = [1, 2, 3, 4, 5, 6];
 
@@ -32,7 +44,7 @@ const GameGrid = ({ gameQuery }: Props) => {
           </GameCardContainer>
         ))}
       </SimpleGrid>
-      {!isLoading && data.length === 0 ? (
+      {!isLoading && data.length === 0 && showErrorMessage ? (
         <Text padding={10} color="red.500">
           Something's Wrong When Fetching Games! Please Select Another Platform!
         </Text>
