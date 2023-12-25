@@ -46,7 +46,7 @@ const GameGrid = ({ gameQuery }: Props) => {
       </SimpleGrid>
       {!isLoading && data.length === 0 && showErrorMessage ? (
         <Text padding={10} color="red.500">
-          Something's Wrong When Fetching Games! Please Select Another Platform!
+          Something's Wrong When Fetching PlayStation Games! Please Select Another Platform!
         </Text>
       ) : (
         ""
