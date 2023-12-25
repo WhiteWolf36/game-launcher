@@ -5,7 +5,6 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
 import { GameQuery } from "../App";
-import { useEffect, useState } from "react";
 
 interface Props {
   gameQuery: GameQuery;
