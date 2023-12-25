@@ -46,7 +46,7 @@ const GameGrid = ({ gameQuery }: Props) => {
       </SimpleGrid>
       {!isLoading && data.length === 0 && showErrorMessage ? (
         <Heading padding={10} color="red.700" fontSize="2xl">
-          No Game Found! Please Try Some other filters!
+          No Game(s) Found! Please Try Some other filters!
         </Heading>
       ) : (
         ""
