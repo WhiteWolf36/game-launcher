@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -45,9 +45,9 @@ const GameGrid = ({ gameQuery }: Props) => {
         ))}
       </SimpleGrid>
       {!isLoading && data.length === 0 && showErrorMessage ? (
-        <Text padding={10} color="red.500">
+        <Heading padding={10} color="red.700" fontSize="2xl">
           No Game Found! Please Try Some other filters!
-        </Text>
+        </Heading>
       ) : (
         ""
       )}
