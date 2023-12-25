@@ -5,6 +5,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
 import { GameQuery } from "../App";
+import { useEffect, useState } from "react";
 
 interface Props {
   gameQuery: GameQuery;
@@ -14,19 +15,11 @@ const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
 
   const skeletons = [1, 2, 3, 4, 5, 6];
-  if (data.length === 0) {
-    return (
-      <>
-        <Text padding={10} color="red.500">
-          Something's Wrong When Fetching Playstation Games! Please Select
-          Another Platform!
-        </Text>
-      </>
-    );
-  }
+
   return (
     <>
       {error && <Text> {error}</Text>}
+
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={3} padding={10}>
         {isLoading &&
           skeletons.map((skeleton) => (
@@ -40,6 +33,13 @@ const GameGrid = ({ gameQuery }: Props) => {
           </GameCardContainer>
         ))}
       </SimpleGrid>
+      {!isLoading && data.length === 0 ? (
+        <Text padding={10} color="red.500">
+          Something's Wrong When Fetching Games! Please Select Another Platform!
+        </Text>
+      ) : (
+        ""
+      )}
     </>
   );
 };
